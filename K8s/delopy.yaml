@@ -1,19 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-postgres
+  name: myapp
 spec:
   replicas: 3
   selector:
     matchLabels:
-      component: flask-db
+      app: myapp
   template:
     metadata:
       labels:
-        component: flask-db
+        app: myapp
     spec:
       containers:
-        - name: flaskdb
-          image: dina2022/postflask:${{ secrets.COMMIT_HASH }}
+        - name: myapp
+          image: dina2022/dbflask:1.1
           ports:
-           - containerPort: 9090
+            - containerPort: 5000
+          env:
+            - name: myapp-config
+              value: app_config.json
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-secrets
+                  key: database-url
+      imagePullSecrets:
+        - name: myregistrykey
