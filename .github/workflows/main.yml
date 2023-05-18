@@ -18,8 +18,8 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1 # Info: https://github.com/docker/build-push-action/tree/releases/v1#tags
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          username: ${{ secrets.DOCKERUSERNAME}}
+          password: ${{ secrets.DOCKERPASS }}
           #repository: Dinahalem/flask-docker
           
         
