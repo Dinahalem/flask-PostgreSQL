@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-postgres
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: flask-db
+  template:
+    metadata:
+      labels:
+        component: flask-db
+    spec:
+      containers:
+        - name: flaskdb
+          image: dina2022/postflask:${{ secrets.COMMIT_HASH }}
+          ports:
+           - containerPort: 9090
