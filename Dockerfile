@@ -8,4 +8,5 @@ ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=
 ENV POSTGRES_HOST=localhost
 ENV POSTGRES_DB=flask_db
+ENTRYPOINT ["python","init_db.py"]
 CMD ["python","app.py"]
