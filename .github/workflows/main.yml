@@ -38,7 +38,7 @@ jobs:
     steps:         
     - name: Build container
       run: |       
-          chmod +x docker-compose.yaml
+          chmod +x ./docker-compose.yaml
           docker-compose build
           docker-compose up
           
