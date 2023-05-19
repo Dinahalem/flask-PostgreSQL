@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest  
     steps:             
     - name: Build Docker images
-      run: docker-compose build
+      run: docker-compose build .
 
     - name: Start Docker containers
       run: docker-compose up
