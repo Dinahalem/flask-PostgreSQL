@@ -39,7 +39,7 @@ jobs:
     - name: Build container
       run: |       
           docker run -d -p 5000:9090 --name flask-postgres dina2022/dbflask:1.1
-          docker-compose -f docker-compose.yaml up -d
+          docker-compose -f ./docker-compose.yaml up -d
   
   #kubernetes_cluster:
    # name: Deploy to k8s
