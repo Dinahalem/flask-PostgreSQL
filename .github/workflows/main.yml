@@ -36,8 +36,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest  
     steps:         
-    - name: Make docker-compose.yml executable
-      run: chmod +x ./docker-compose.yml
+    - name: Make docker-compose.yaml executable
+      run: chmod +x ./docker-compose.yaml
     
     - name: Build Docker images
       run: docker-compose build
