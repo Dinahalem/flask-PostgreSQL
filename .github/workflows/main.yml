@@ -49,5 +49,6 @@ jobs:
     - name: Deployment on K8s 
       run: |  
           minikube start
-          chmod -R +x 
-          kubectl apply -f .
+          cd K8s
+          chmod -R +x .
+          kubectl apply -f K8s/. 
