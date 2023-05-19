@@ -38,7 +38,7 @@ jobs:
     steps:         
     - name: Build container
       run: |       
-          docker run -d -p 5000:9090 --name flask-postgres dina2022/dbflask:1.1
+          docker run -d -p 9090:5000 --name flask-postgres dina2022/dbflask:1.1
           
   
  
