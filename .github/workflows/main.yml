@@ -36,10 +36,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest  
     steps:         
-    - name: Set up Docker Compose
-      uses: docker/compose-cli@v2
-      with:
-        compose-version: 3.9
     - name: Make docker-compose.yml executable
       run: chmod +x ./docker-compose.yml
     
