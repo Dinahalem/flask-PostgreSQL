@@ -4,6 +4,7 @@ services:
     image: postgres 
     environment: 
       POSTGRES_USER: postgres
+      POSTGRES_HOST: localhost
       POSTGRES_PASSWORD: 1234 
       POSTGRES_DB: flask_db
   web: 
