@@ -38,7 +38,9 @@ jobs:
     steps:         
     - name: Build container
       run: |       
-          docker run -d -p 9090:5000 --name flask-postgres dina2022/dbflask:1.1
+          chmod +x docker-compose.yaml
+          docker-compose build
+          docker-compose up
           
   
  
