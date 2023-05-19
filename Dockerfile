@@ -9,4 +9,4 @@ ENV POSTGRES_PASSWORD=1234
 ENV POSTGRES_HOST=localhost
 ENV POSTGRES_DB=flask_db
 ENTRYPOINT ["python3","init_db.py"]
-Entrypoint ["python3","app.py"]
+CMD ["python3","app.py"]
