@@ -36,11 +36,18 @@ jobs:
     needs: build
     runs-on: ubuntu-latest  
     steps:         
-    - name: Build container
-      run: |       
-          chmod +x ./docker-compose.yaml
-          docker-compose build
-          docker-compose up
+    - name: Set up Docker Compose
+      uses: docker/compose-cli@v1
+      with:
+        compose-version: 2.x
+    - name: Make docker-compose.yml executable
+      run: chmod +x ./docker-compose.yml
+    
+    - name: Build Docker images
+      run: docker-compose build
+
+    - name: Start Docker containers
+      run: docker-compose up
           
   
  
