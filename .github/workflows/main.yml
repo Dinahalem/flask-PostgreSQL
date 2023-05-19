@@ -39,7 +39,8 @@ jobs:
     - name: Make docker-compose.yaml executable
       run: |
          cd flask-PostgreSQL
-         chmod +x docker-compose.yaml
+         chmod +x flask-PostgreSQL/docker-compose.yaml
+
     
     - name: Build Docker images
       run: docker-compose build
