@@ -1,19 +1,17 @@
-version: '3'
-services:
-  app:
-    build: .
-    ports:
-      - "5000:9090"
-    environment:
-      - FLASK_APP=app.py
-      - DATABASE_URL=postgresql://postgres:1234@*:5432/flask_db
-    depends_on:
-      - postgres
-  postgres:
-    image: postgres:13-alpine
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=1234
-      - POSTGRES_DB=flask_db
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+version: "3.9" 
+services: 
+  db: 
+    image: postgres 
+    environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234 
+      POSTGRES_DB: flask_db
+  web: 
+    build: . 
+    command: sh -c "python init_db.py & python app.py"
+    ports: 
+      - "5000:5000" 
+    depends_on: 
+      - db 
+    environment: 
+      DATABASE_URL: postgres://postgres:1234@localhost:5432/flask_db
