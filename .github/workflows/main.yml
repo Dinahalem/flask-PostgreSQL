@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest  
     steps:         
     - name: Set up Docker Compose
-      uses: docker/compose-cli@v1
+      uses: docker/compose-cli@v2
       with:
         compose-version: 2.x
     - name: Make docker-compose.yml executable
