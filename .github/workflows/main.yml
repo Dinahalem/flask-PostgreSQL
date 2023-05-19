@@ -35,12 +35,14 @@ jobs:
     name: run container
     needs: build
     runs-on: ubuntu-latest  
-    steps:             
-    - name: Build Docker images
-      run: docker-compose build .
-
-    - name: Start Docker containers
-      run: docker-compose up
+    steps:    
+    - name: run postgres-server
+      run: docker network create flaskdb
+    - name: run postgres-server
+      run: docker run -p 8081:5000 -d --name postgres-server --network flaskdb -e POSTGRES_PASSWORD=1234 -e POSTGRES_USER=postgres -e POSTGRES_DB=flask_db POSTGRES_HOST=localhost postgres
+         
+    - name: Start Docker containers web
+      run: docker run -p 8082:5000 -d --name web --network flaskdb dina2022/dbflask:1.1
           
   
  
