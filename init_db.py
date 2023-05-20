@@ -1,6 +1,6 @@
 import psycopg2
 
-conn = psycopg2.connect(database="flask_db", host="web", user="postgres", password="1234", port="5432")
+conn = psycopg2.connect(database="flask_db", host="localhost", user="postgres", password="1234", port="5432")
 cur = conn.cursor()
 
 cur.execute('''CREATE TABLE IF NOT EXISTS courses (id serial PRIMARY KEY, name varchar(100), fees integer, 
