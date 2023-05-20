@@ -40,13 +40,13 @@ jobs:
       run: docker network create flaskdb
       
     - name: Start Docker containers web
-      run: docker run -p 8082:5000 -d --name web --network flaskdb dina2022/dbflask:1.1
-      
-    - name: run postgres-server
-      run: docker run -p 8081:5432 -d --name postgres-server --network flaskdb -e POSTGRES_PASSWORD=1234 -e POSTGRES_USER=postgres -e POSTGRES_HOST=postgres-server -e POSTGRES_DB=flask_db postgres
+      run: |
+         docker run -p 8081:5432 -d --name postgres-server --network flaskdb -e POSTGRES_PASSWORD=1234  postgres
+         #docker run -p 8082:5000 -d --name web --network flaskdb dina2022/dbflask:1.1
+         docker logs postgres-server     
+    #- name: run postgres-server
+      #run: 
          
-    - name: show docker logs
-      run: docker logs web
           
   
  
