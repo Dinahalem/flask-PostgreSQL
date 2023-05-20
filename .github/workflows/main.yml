@@ -42,7 +42,7 @@ jobs:
     - name: Start Docker containers web
       run: |
          docker run --name postgres-server -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
-         docker exec -it postgres-server bash
+         docker exec -it postgres-server bash -i
          psql -U postgres -c "CREATE DATABASE flask_db;"
          #docker run -p 8082:5000 -d --name web --network flaskdb dina2022/dbflask:1.1
          docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' postgres-server 
