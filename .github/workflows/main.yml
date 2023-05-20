@@ -43,8 +43,8 @@ jobs:
       run: |
          docker run --name my-pgadmin -p 9001:9001 -e PGADMIN_DEFAULT_EMAIL=user@domain.com -e PGADMIN_DEFAULT_PASSWORD=supersecret -d dpage/pgadmin4
          docker run --name postgres-server -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
-         sudo -u postgres -i
-         psql -U postgres -c "CREATE DATABASE flask_db;"
+         #sudo -u postgres -i
+         #psql -U postgres -c "CREATE DATABASE flask_db;"
          #docker run -p 8082:5000 -d --name web --network flaskdb dina2022/dbflask:1.1
          #docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' postgres-server 
          docker logs postgres-server
