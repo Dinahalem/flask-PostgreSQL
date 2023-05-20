@@ -41,11 +41,11 @@ jobs:
       
     - name: Start Docker containers web
       run: |
-         docker run --name my-pgadmin -p 9001:9001 -e PGADMIN_DEFAULT_EMAIL=user@domain.com -e PGADMIN_DEFAULT_PASSWORD=supersecret -d dpage/pgadmin4
+         #docker run --name my-pgadmin -p 9001:9001 -e PGADMIN_DEFAULT_EMAIL=user@domain.com -e PGADMIN_DEFAULT_PASSWORD=supersecret -d dpage/pgadmin4
          docker run --name postgres-server -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
          
-         docker logs postgres-server
-         docker run --name my-flask-app-container -e DATABASE_URL=postgres://postgres:1234@postgres-server:5432/flask_db --link postgres-server:postgres-server -p 5000:5000 dina2022/dbflask:1.1
+         #docker logs postgres-server
+         #docker run --name my-flask-app-container -e DATABASE_URL=postgres://postgres:1234@postgres-server:5432/flask_db --link postgres-server:postgres-server -p 5000:5000 dina2022/dbflask:1.1
          
          
          
