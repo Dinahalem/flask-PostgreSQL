@@ -15,4 +15,4 @@ services:
     depends_on: 
       - db 
     environment: 
-      DATABASE_URL: postgres://postgres:1234@localhost:5432/flask_db
+      DATABASE_URL: postgres://postgres:1234@db:5432/flask_db
