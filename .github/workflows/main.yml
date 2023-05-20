@@ -30,7 +30,7 @@ jobs:
           push: true
           tags: dina2022/dbflask:1.1
 
-                  
+              
   Run_container:
     name: run container
     needs: build
@@ -45,7 +45,8 @@ jobs:
     - name: run postgres-server
       run: docker run -p 8081:5000 -d --name postgres-server --network flaskdb -e POSTGRES_PASSWORD=1234 -e POSTGRES_USER=postgres -e POSTGRES_HOST=web -e POSTGRES_DB=flask_db postgres
          
-
+    - name: show docker logs
+      run: docker logs
           
   
  
