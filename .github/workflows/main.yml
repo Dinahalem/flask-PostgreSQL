@@ -30,42 +30,32 @@ jobs:
           push: true
           tags: dina2022/dbflask:1.1
 
-              
-  Run_container:
-    name: run container
-    needs: build
-    runs-on: ubuntu-latest  
-    steps:    
-    - name: Check out the repo
-      uses: actions/checkout@v2
-     
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1 
-   
-    - name: Install Docker Compose
-      run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
 
-    - name: Start Docker containers web
-      run: |
+   
+      #- name: Install Docker Compose
+       # run: |
+        #  sudo apt-get update
+         # sudo apt-get install -y docker-compose
+
+      - name: Start Docker containers web
+        run: |
           docker-compose --version
           docker-compose --env-file .env up
          
-    - name: Install kubectl
-      run: |
-          sudo apt-get update && sudo apt-get install -y apt-transport-https
-          curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-          echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-          sudo apt-get update
-          sudo apt-get install -y kubectl
-    - name: Install Minikube
-      run: |
-          curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
-          sudo dpkg -i minikube_latest_amd64.deb
+      #- name: Install kubectl
+       # run: |
+        #  sudo apt-get update && sudo apt-get install -y apt-transport-https
+         # curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+          #echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+          #sudo apt-get update
+          #sudo apt-get install -y kubectl
+      #- name: Install Minikube
+       # run: |
+        #  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+         # sudo dpkg -i minikube_latest_amd64.deb
     
-    - name: Start Docker containers web         
-      run: |
+      - name: Start Docker containers web         
+        run: |
           minikube start
           kubectl apply -f k8s/*
           
