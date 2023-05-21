@@ -43,8 +43,9 @@ jobs:
 
     - name: Start Docker containers web
       run: |
-          docker-compose -f docker-compose.yaml build
-          docker-compose up
+          docker-compose --version
+          sudo docker-compose -f docker-compose.yaml build
+          sudo docker-compose -f docker-compose.yaml up
          
     - name: Install kubectl
       run: |
