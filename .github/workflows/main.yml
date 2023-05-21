@@ -36,6 +36,12 @@ jobs:
     needs: build
     runs-on: ubuntu-latest  
     steps:    
+    - name: Check out the repo
+      uses: actions/checkout@v2
+     
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1 
+   
     - name: Install Docker Compose
       run: |
           sudo apt-get update
@@ -44,8 +50,7 @@ jobs:
     - name: Start Docker containers web
       run: |
           docker-compose --version
-          sudo docker-compose -f flask-PostgreSQL/docker-compose.yaml build
-          sudo docker-compose -f flask-PostgreSQL/docker-compose.yaml up
+          docker-compose --env-file .env up
          
     - name: Install kubectl
       run: |
