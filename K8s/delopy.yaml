@@ -16,7 +16,7 @@ spec:
         - name: myapp
           image: dina2022/dbflask:1.1
           ports:
-            - containerPort: 9090
+            - containerPort: 5000
           env:
             - name: myapp-config
               value: app_config.json
