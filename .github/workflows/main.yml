@@ -44,8 +44,8 @@ jobs:
     - name: Start Docker containers web
       run: |
           docker-compose --version
-          sudo docker-compose -f ./docker-compose.yaml build
-          sudo docker-compose -f ./docker-compose.yaml up
+          sudo docker-compose -f flask-PostgreSQL/docker-compose.yaml build
+          sudo docker-compose -f flask-PostgreSQL/docker-compose.yaml up
          
     - name: Install kubectl
       run: |
