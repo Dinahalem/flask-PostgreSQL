@@ -7,5 +7,5 @@ spec:
     component: myapp
   ports:
   - protocol: "TCP"
-    port: 9090
+    port: 5000
   type: NodePort
