@@ -1,10 +1,9 @@
 FROM python:3.7
 WORKDIR /app
 COPY . /app
-RUN pip install -r requirements.txt
+
+RUN pip install -r /app/requirements.txt
 EXPOSE 5000
-ENV POSTGRES_USER=postgres
-ENV POSTGRES_PASSWORD=1234
-ENV POSTGRES_HOST=postgres-server
-ENV POSTGRES_DB=flask_db
-CMD ["sh", "-c", "python init_db.py && python app.py"]
+#RUN python /app/init_db.py
+#CMD ["sh", "-c", "python /docker-entrypoint-initdb.d/init_db.py && /app/app.py"]
+
