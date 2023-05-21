@@ -43,7 +43,7 @@ jobs:
 
     - name: Start Docker containers web
       run: |
-          docker-compose build
+          docker-compose -f docker-compose.yaml build
           docker-compose up
          
     - name: Install kubectl
