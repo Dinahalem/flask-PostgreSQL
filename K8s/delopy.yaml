@@ -15,7 +15,7 @@ spec:
     spec:
       Containers:
         - name: db
-	        image: postgres
+	  image: postgres
           imagePullPolicy: "IfNotPresent"
           ports:
           - containerPort: 5432
@@ -26,7 +26,7 @@ spec:
             POSTGRES_PASSWORD: 1234
             POSTGRES_DB: flask_db
             
-	      - name: web
+	- name: web
           image: flask-postgresql_web
           ports: 
           - containerPort: 5000 
@@ -34,4 +34,4 @@ spec:
           depends_on: 
           - db 
           environment: 
-          DATABASE_URL: postgres://postgres:1234@db:5432/flask_db	  
+            DATABASE_URL: postgres://postgres:1234@db:5432/flask_db	  
