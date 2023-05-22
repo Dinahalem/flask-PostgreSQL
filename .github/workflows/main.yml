@@ -36,13 +36,6 @@ jobs:
           #docker-compose --version
           #docker-compose --env-file .env up -d 
           docker-compose down
-          docker rmi flask-postgresql_web_1
-          docker rmi flask-postgresql_web
-          docker rmi flask-postgresql_init-db_1
-          docker rmi flask-postgresql_init-db
-          docker rmi flask-postgresql_db
-          docker rmi flask-postgresql_db_1
-          
           docker-compose up --build -d 
           docker ps
           docker images
