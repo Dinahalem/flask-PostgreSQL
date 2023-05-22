@@ -60,7 +60,7 @@ jobs:
       - name: Start kubernetes         
         run: |
           minikube start
-          kubectl apply -f k8s/*
+          kubectl apply -f k8s/*.yaml
           
       - name: Test application
         run: curl http://localhost:5000
