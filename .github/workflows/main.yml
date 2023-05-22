@@ -30,21 +30,14 @@ jobs:
           push: true
           tags: dina2022/dbflask:1.1
 
-      - name: Test application
-        run: |
-            pip install -U Flask
-            pip install psycopg2-binary
-            python3 init_db.py
-            python3 app.py
-            curl http://localhost:5000
- 
 
       - name: Start docker-compose
         run: |
           #docker-compose --version
           docker-compose --env-file .env up -d 
-          curl http://localhost:5000
-    
+
+      - name: Test application
+        run: curl http://localhost:5000
       - name: Start minikube
         uses: medyagh/setup-minikube@master
         
