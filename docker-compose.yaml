@@ -20,4 +20,5 @@ services:
     #command: python app.py 
 volumes: 
   postgres-data:
+  
 
