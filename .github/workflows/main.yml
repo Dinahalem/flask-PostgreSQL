@@ -35,21 +35,22 @@ jobs:
         run: |
           #docker-compose --version
           #docker-compose --env-file .env up -d 
+          docker-compose down
           docker-compose up --build -d
+          docker rmi 
+          docker ps
           docker images
-          
-      #- name: Test application
-        #run: curl http://localhost:5000
+      
       - name: Start minikube
         uses: medyagh/setup-minikube@master
         
       - name: Start kubernetes         
         run: |
           minikube start
-          kubectl apply -f K8s/secret.yaml
-          kubectl apply -f K8s/configmap.yaml
           kubectl apply -f K8s/delopy.yaml
           kubectl apply -f K8s/service.yaml
+          #kubectl apply -f K8s/secret.yaml
+          #kubectl apply -f K8s/configmap.yaml
         
       - name: Test service URLs
         run: |
