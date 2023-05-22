@@ -30,29 +30,18 @@ jobs:
           push: true
           tags: dina2022/dbflask:1.1
 
+      - name: Test application
+        run: |
+            python3 init_db.py
+            python3 app.py
+            curl http://localhost:5000
+ 
 
-   
-      #- name: Install Docker Compose
-       # run: |
-        #  sudo apt-get update
-         # sudo apt-get install -y docker-compose
-
-      - name: Start Docker containers web
+      - name: Start docker-compose
         run: |
           #docker-compose --version
           docker-compose --env-file .env up -d 
-         
-      #- name: Install kubectl
-       # run: |
-        #  sudo apt-get update && sudo apt-get install -y apt-transport-https
-         # curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-          #echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-          #sudo apt-get update
-          #sudo apt-get install -y kubectl
-      #- name: Install Minikube
-       # run: |
-        #  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
-         # sudo dpkg -i minikube_latest_amd64.deb
+          curl http://localhost:5000
     
       - name: Start minikube
         uses: medyagh/setup-minikube@master
@@ -64,9 +53,6 @@ jobs:
           kubectl apply -f K8s/configmap.yaml
           kubectl apply -f K8s/delopy.yaml
           kubectl apply -f K8s/service.yaml
-          
-      - name: Test application
-        run: curl http://localhost:5000
         
       - name: Test service URLs
         run: |
