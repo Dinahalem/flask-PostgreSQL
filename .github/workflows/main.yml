@@ -35,7 +35,7 @@ jobs:
         run: |
           #docker-compose --version
           #docker-compose --env-file .env up -d 
-          docker-compose up --build
+          docker-compose up --build -d
           docker ps 
 
       - name: Test application
