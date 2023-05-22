@@ -55,10 +55,10 @@ jobs:
          # sudo dpkg -i minikube_latest_amd64.deb
     
       - name: Set up Minikube
-        uses: kubernetes-sigs/setup-minikube@v1
+        uses: kubernetes-sigs/setup-minikube@v2
 
       - name: Set up kubectl
-        uses: kubernetes-sigs/setup-kubectl@v1
+        uses: kubernetes-sigs/setup-kubectl@v2
         
       - name: Start kubernetes         
         run: |
