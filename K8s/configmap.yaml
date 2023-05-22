@@ -5,6 +5,5 @@ metadata:
 data:
   app_config.json: |
     {
-      "app_name": "My App",
-      "debug": false
+      "database_url": "postgresql://postgres:postgres@db:5432/flash_db"
     }
