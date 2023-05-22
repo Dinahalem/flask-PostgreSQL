@@ -60,10 +60,14 @@ jobs:
       - name: Start kubernetes         
         run: |
           minikube start
-          kubectl apply -f K8s/*.yaml
+          kubectl apply -f K8s/deploy.yaml
+          kubectl apply -f K8s/secret.yaml
+          kubectl apply -f K8s/configmap.yaml
+          kubectl apply -f K8s/service.yaml
           
       - name: Test application
         run: curl http://localhost:5000
+        
       - name: Test service URLs
         run: |
           minikube service list
