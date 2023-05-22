@@ -19,11 +19,17 @@ spec:
             - containerPort: 5000
           env:
             - name: myapp-config
-              value: app_config.json
+              value: /app/config/app_config.json
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
                   name: myapp-secrets
                   key: database-url
-      imagePullSecrets:
-        - name: myregistrykey
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/config
+              readOnly: true
+    volumes:
+        - name: config-volume
+          configMap:
+            name: myapp-config
