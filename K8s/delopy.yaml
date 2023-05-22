@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myapp
+  namespace: Web
 spec:
   replicas: 3
   selector:
@@ -12,24 +13,25 @@ spec:
       labels:
         app: myapp
     spec:
-      containers:
-        - name: myapp
-          image: dina2022/dbflask:1.1
+      Containers:
+        - name: db
+	        image: postgres
+          imagePullPolicy: "IfNotPresent"
           ports:
-            - containerPort: 5000
-          env:
-            - name: myapp-config
-              value: /app/config/app_config.json
-            - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: myapp-secrets
-                  key: database-url
-          volumeMounts:
-            - name: config-volume
-              mountPath: /app/config
-              readOnly: true
-      volumes:
-        - name: config-volume
-          configMap:
-            name: myapp-config
+          - containerPort: 5432
+          volumes: 
+          - postgres-data:/var/lib/postgresql/data	
+          environment: 
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: 1234
+            POSTGRES_DB: flask_db
+            
+	      - name: web
+          image: flask-postgresql_web
+          ports: 
+          - containerPort: 5000 
+          command: [ sh -c "python init_db.py & python app.py" ]
+          depends_on: 
+          - db 
+          environment: 
+          DATABASE_URL: postgres://postgres:1234@db:5432/flask_db	  
