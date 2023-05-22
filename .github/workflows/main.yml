@@ -54,11 +54,8 @@ jobs:
         #  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
          # sudo dpkg -i minikube_latest_amd64.deb
     
-      - name: Set up Minikube
-        uses: kubernetes-sigs/setup-minikube@v2
-
-      - name: Set up kubectl
-        uses: kubernetes-sigs/setup-kubectl@v2
+      - name: Start minikube
+        uses: medyagh/setup-minikube@master
         
       - name: Start kubernetes         
         run: |
@@ -67,5 +64,8 @@ jobs:
           
       - name: Test application
         run: curl http://localhost:5000
-          
+      - name: Test service URLs
+        run: |
+          minikube service list
+          minikube service node-port --url     
  
