@@ -39,7 +39,7 @@ jobs:
 
       - name: Start Docker containers web
         run: |
-          docker-compose --version
+          #docker-compose --version
           docker-compose --env-file .env up
          
       #- name: Install kubectl
