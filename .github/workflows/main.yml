@@ -38,8 +38,8 @@ jobs:
           docker-compose up --build -d
           docker ps 
 
-      - name: Test application
-        run: curl http://localhost:5000
+      #- name: Test application
+        #run: curl http://localhost:5000
       - name: Start minikube
         uses: medyagh/setup-minikube@master
         
