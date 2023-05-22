@@ -36,10 +36,7 @@ jobs:
           #docker-compose --version
           #docker-compose --env-file .env up -d 
           docker-compose up --build -d
-          docker ps 
-          docker logs flask-postgresql_web_1
-          docker logs flask-postgresql_init-db_1
-          docker logs flask-postgresql_db_1
+          docker images
           
       #- name: Test application
         #run: curl http://localhost:5000
