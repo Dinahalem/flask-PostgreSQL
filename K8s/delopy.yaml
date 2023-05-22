@@ -13,9 +13,9 @@ spec:
       labels:
         app: myapp
     spec:
-      Containers:
+      containers:
       - name: db
-	image: postgres
+        image: postgres
         imagePullPolicy: "IfNotPresent"
         ports:
         - containerPort: 5432
