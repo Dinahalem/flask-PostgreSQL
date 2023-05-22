@@ -32,6 +32,8 @@ jobs:
 
       - name: Test application
         run: |
+            pip install -U Flask
+            pip install psycopg2-binary
             python3 init_db.py
             python3 app.py
             curl http://localhost:5000
