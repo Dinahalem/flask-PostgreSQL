@@ -2,10 +2,10 @@
 # Usage: pip install -r requirements.txt
 
 # Flask Framework
-Flask~=2.3.2
-psycopg2-binary==2.9.1
+Flask
+psycopg2-binary
 
 
-psycopg2~=2.9.6
-python-dotenv~=1.0.0
+psycopg2
+python-dotenv
 
