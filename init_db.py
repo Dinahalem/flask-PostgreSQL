@@ -1,6 +1,12 @@
 import psycopg2
+from dotenv import load_dotenv
+import os
+load_dotenv()
+POSTGRES_USER = os.getenv('POSTGRES_USER')
+POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')
 
-conn = psycopg2.connect(database="db_flask", host="db", user="postgres", password="1234", port="5432")
+conn = psycopg2.connect(database="flask_db", host="localhost", user=POSTGRES_USER, password=POSTGRES_PASSWORD,
+                        port=5432)
 cur = conn.cursor()
 
 cur.execute('''CREATE TABLE IF NOT EXISTS courses (id serial PRIMARY KEY, name varchar(100), fees integer, 
