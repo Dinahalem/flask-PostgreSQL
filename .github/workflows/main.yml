@@ -22,7 +22,10 @@ jobs:
           password: ${{ secrets.DOCKERPASS }}
           #repository: Dinahalem/flask-docker
           
-        
+      - name: upgrade
+        run: |
+          pip install git+https://github.com/pallets/flask.git
+          /usr/local/bin/python -m pip install --upgrade pip
       - name: Build Docker image
         uses: docker/build-push-action@v2
         with:
