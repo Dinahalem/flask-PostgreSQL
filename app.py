@@ -1,11 +1,16 @@
 import psycopg2
 from flask import Flask, render_template, request, redirect, url_for
-
+from dotenv import load_dotenv
+import os
 app = Flask(__name__)
+load_dotenv()
+POSTGRES_USER = os.getenv('POSTGRES_USER')
+POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')
 
 
 def db_conn():
-    conn = psycopg2.connect(database="flask_db", host="db", user="postgres", password="1234", port="5432")
+    conn = psycopg2.connect(database="flask_db", host="localhost", user=POSTGRES_USER, password=POSTGRES_PASSWORD,
+                            port=5432)
     return conn
 
 
