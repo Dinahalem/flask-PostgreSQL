@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pv-calim
+  labels:
+   app: myserver
+   tier: database
+spec:
+  accessModes:
+   - ReadWriteOnce  #This specifies the mode of the claim that we are trying to create
+  resources:
+   requests:
+     storage: 1Gi  #This will tell kubernetes about the amount of space we are trying to claim.
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  labels:
+   app: myserver
+   tier: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myserver
+      tier: database
+  strategy:
+    type: Recreate  
+  template:
+    metadata:
+      labels:
+        app: myserver
+        tier: database
+   
+    spec:
+      containers:
+        - name: db
+	    image: postgres
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: root 
+            - name: POSTGRES_DB 
+              value: flask_db
+          ports:
+            - containerPort: 5432
+          volumeMounts:   #Mounting volume obtained from PVC
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data	#this is the path in the continer on which the monuting withh take place  
+	
+      volumes:
+        - name: postgres-persistent-storage  #obtaining volume from PVC
+          persistentVolumeClaim:
+            claimName: postgres-pv-calim  
+	 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    app: myserver
+    tier: database
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+  selector: 
+    app: myserver
+    tier: databse
+  clusterIP: None
