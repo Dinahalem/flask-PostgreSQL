@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-crud-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: flask-crud-k8s
+          image: dina2022/dbflask:1.1
+          ports:
+            - containerPort: 5000
+          env:
+            - name: DB_HOST   # Setting database host from configmap
+              value: db
+            - name: DB_NAME    # Setting database name from configmap
+              value: flask_db
+            - name: DB_USERNAME    # Setting database username from secret
+              value: root
+            - name: DB_PASSWORD    # Setting database password from secret
+              value: root
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-crud-deployment
+spec:
+  selector:
+     app: myapp
+  ports:
+     - protocol: TCP
+       port: 5000     # the port that the service is running on in the cluster
+       targetPort: 5000   # the port exposed by the service
+  type: NodePort  
+
