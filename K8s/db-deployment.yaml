@@ -18,8 +18,8 @@ kind: Deployment
 metadata:
   name: db
   labels:
-   app: myserver
-   tier: database
+    app: myserver
+    tier: database
 spec:
   replicas: 1
   selector:
