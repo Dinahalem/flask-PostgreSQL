@@ -51,7 +51,7 @@ spec:
               mountPath: /var/lib/postgresql/data #this is the path in the continer on which the monuting withh take place  
 
       volumes:
-        - name: postgres-persistent-storage  #obtaining volume from PVC
+        - name: postgres-data  #obtaining volume from PVC
           persistentVolumeClaim:
             claimName: postgres-pv-calim
 ---
