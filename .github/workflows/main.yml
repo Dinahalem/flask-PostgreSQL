@@ -49,10 +49,10 @@ jobs:
       - name: Start kubernetes         
         run: |
           minikube start
-          kubectl apply -f K8s/delopy.yaml
-          kubectl apply -f K8s/service.yaml
-          #kubectl apply -f K8s/secret.yaml
-          #kubectl apply -f K8s/configmap.yaml
+          kubectl apply -f K8s/app-deployment.yaml
+          kubectl apply -f K8s/db-deployment.yaml
+          #kubectl apply -f K8s/postgres-configmap.yaml
+          #kubectl apply -f K8s/postgres-secrets.yaml
         
       - name: Test service URLs
         run: |
