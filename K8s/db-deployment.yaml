@@ -18,8 +18,8 @@ kind: Deployment
 metadata:
   name: db
   labels:
-   app: myserver
-   tier: database
+    app: myserver
+    tier: database
 spec:
   replicas: 1
   selector:
@@ -27,13 +27,12 @@ spec:
       app: myserver
       tier: database
   strategy:
-    type: Recreate  
+    type: Recreate
   template:
     metadata:
       labels:
         app: myserver
         tier: database
-   
     spec:
       containers:
         - name: db
@@ -42,19 +41,19 @@ spec:
             - name: POSTGRES_USER
               value: postgres
             - name: POSTGRES_PASSWORD
-              value: root      
-            - name: POSTGRES_DB 
-              value: flask_db     #setting database name from configmap
+              value: root
+            - name: POSTGRES_DB
+              value: flask_db
           ports:
             - containerPort: 5432
           volumeMounts:   #Mounting volume obtained from PVC
             - name: postgres-data
-              mountPath: /var/lib/postgresql/data	#this is the path in the continer on which the monuting withh take place  
+              mountPath: /var/lib/postgresql/data #this is the path in the continer on which the monuting withh take place  
+
       volumes:
         - name: postgres-persistent-storage  #obtaining volume from PVC
           persistentVolumeClaim:
-            claimName: postgres-pv-calim  
-	 
+            claimName: postgres-pv-calim
 ---
 apiVersion: v1
 kind: Service
