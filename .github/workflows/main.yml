@@ -42,7 +42,7 @@ jobs:
           docker-compose up --build -d 
           docker ps
           docker images
-      
+          curl http://127.0.0.1:5000
       - name: Start minikube
         uses: medyagh/setup-minikube@master
         
@@ -56,6 +56,5 @@ jobs:
         
       - name: Test service URLs
         run: |
-          minikube service list
-          minikube service node-port --url     
+          minikube service list   
  
