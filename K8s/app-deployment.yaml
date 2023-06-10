@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: flask-crud-k8s
-          image: dina2022/dbflask:1.4
+          image: dina2022/dbflask:1.1
           ports:
             - containerPort: 5000
           env:
