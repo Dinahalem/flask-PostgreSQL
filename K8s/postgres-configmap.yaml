@@ -3,6 +3,6 @@ kind : ConfigMap
 metadata:
   name : db-config
 data:
-  host : db
+  host : postgres
   dbName: flask_db
   
