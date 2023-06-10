@@ -53,6 +53,11 @@ spec:
                 configMapKeyRef:
                   name: db-config
                   key: dbName
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: host
           ports:
             - containerPort: 5432
           volumeMounts:   #Mounting volume obtained from PVC
